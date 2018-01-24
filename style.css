@@ -1,0 +1,31 @@
+.purple-rect {
+    fill: purple;
+}
+
+path {
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke-width: 1.5;
+}
+
+/* path.mouse-line {
+    fill: none;
+    opacity: 0;
+    stroke: #000;
+    stroke-width: 15;
+} */
+
+circle.tooltip:hover {
+    cursor: pointer;
+}
+/* svg.tasks {
+    background: #564564;
+}
+
+path.monday_estimation {
+    stroke: magenta;
+}
+
+path.tuesday_estimation {
+    stroke: aqua;
+} */
