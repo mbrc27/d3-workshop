@@ -1,4 +1,4 @@
-.purple-rect {
+/* .purple-rect {
     fill: purple;
 }
 
@@ -6,7 +6,7 @@ path {
     stroke-linejoin: round;
     stroke-linecap: round;
     stroke-width: 1.5;
-}
+} */
 
 /* path.mouse-line {
     fill: none;
@@ -15,9 +15,9 @@ path {
     stroke-width: 15;
 } */
 
-circle.tooltip:hover {
+/* circle.tooltip:hover {
     cursor: pointer;
-}
+} */
 /* svg.tasks {
     background: #564564;
 }
@@ -29,3 +29,6 @@ path.monday_estimation {
 path.tuesday_estimation {
     stroke: aqua;
 } */
+
+
+/* geo */
