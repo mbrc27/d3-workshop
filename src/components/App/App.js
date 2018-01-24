@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { getData } from "../../api/data";
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: null };
+  }
+  componentDidMount() {
+    getData()
+      .then((data) => {
+        this.setState({ ...this.state, data });
+      })
+      .catch((error) => this.setState({ ...this.state, error }));
+  }
   render() {
+    const { data, error } = this.state;
+    if (error) {
+      console.error(error);
+      return (<div>Error! Someting went wrong</div>);
+    }
+    if (!data) return <div>loading...</div>;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        ok
       </div>
     );
   }
