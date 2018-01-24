@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3-axis": "^1.0.8",
+    "d3-geo": "^1.9.1",
+    "d3-interpolate": "^1.1.6",
     "d3-request": "^1.0.6",
+    "d3-scale": "^1.0.7",
+    "d3-selection": "^1.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.0",

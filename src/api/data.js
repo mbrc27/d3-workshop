@@ -8,7 +8,7 @@ export const getCountriesCodes = () => {
     return new Promise((resolve, reject) => {
         d3Csv("/iso2codes.csv")
             .get((err, response) => {
-                if (err) reject(new Error(err));
+                if (err) reject(new Error("Could not load iso codes"));
                 resolve(response);
             });
     });
@@ -18,7 +18,7 @@ export const getCountriesGDP = () => {
     return new Promise((resolve, reject) => {
         d3Csv("/gdp.csv")
             .get((err, response) => {
-                if (err) reject(new Error(err));
+                if (err) reject(new Error("Could not load GDP data"));
                 resolve(response);
             });
     });
@@ -28,7 +28,7 @@ export const getCountriesGeom = () => {
     return new Promise((resolve, reject) => {
         d3Json("/world.topo.json")
             .get((err, response) => {
-                if (err) reject(new Error(err));
+                if (err) reject(new Error("Could not countries geometry"));
                 resolve(response);
             });
     });

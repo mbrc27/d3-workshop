@@ -1,32 +1,17 @@
-import React, { Component } from 'react';
-import { getData } from "../../api/data";
+import React from 'react';
+import Error from "../Error/Error";
+import Chart from "../../containers/Chart/Chart";
 import './App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: null };
-  }
-  componentDidMount() {
-    getData()
-      .then((data) => {
-        this.setState({ ...this.state, data });
-      })
-      .catch((error) => this.setState({ ...this.state, error }));
-  }
-  render() {
-    const { data, error } = this.state;
-    if (error) {
-      console.error(error);
-      return (<div>Error! Someting went wrong</div>);
-    }
-    if (!data) return <div>loading...</div>;
-    return (
-      <div className="App">
-        ok
-      </div>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Error>
+      <Chart
+        margins={{top: 50, right: 20, bottom: 100, left: 60 }}
+
+       />
+    </Error>
+  );
+};
 
 export default App;
