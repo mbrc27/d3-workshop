@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getData } from "../../api/data";
-
+import Map from "../../components/Map/Map";
 class Chart extends Component {
     constructor(props) {
         super(props);
@@ -26,8 +26,14 @@ class Chart extends Component {
         if (!data) return <div>loading...</div>;
         return (
             <svg
-                width={svgDimensions.width} height={svgDimensions.height}
-            />
+                width={svgDimensions.width}
+                height={svgDimensions.height}
+            >
+                <Map
+                    scale={this.props.scale}
+                    data={data}
+                />
+            </svg>
         );
     }
 }

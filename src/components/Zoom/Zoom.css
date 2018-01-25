@@ -1,0 +1,16 @@
+.zoom {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.zoom__button {
+    background: white;
+    border-radius: 5px;
+    border: solid 1px royalblue;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 5px;
+}

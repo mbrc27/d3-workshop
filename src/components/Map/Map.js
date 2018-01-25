@@ -1,27 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { geoPath, geoMercator } from "d3-geo";
 
-import React, { Component } from 'react';
 
 class Map extends Component {
-    componentDidMount() {
-        const proj = geoMercator();
-        this.path = geoPath()
-        .projection(proj);
-    }
-    render() {
-        this.props.data.map(d => {
+    constructor(props) {
+        super(props);
+        const { scale } = props;
+        const proj = geoMercator()
+            .scale(scale);
 
-        });
+        this.path = geoPath()
+            .projection(proj);
+    }
+
+    componentWillUpdate(props) {
+        const { scale } = props;
+        const proj = geoMercator()
+            .scale(scale);
+
+        this.path = geoPath()
+            .projection(proj);
+    }
+
+    render() {
+        const { features } = this.props.data;
         return (
             <g>
-                {this.props.data.map(d => {
+                {features.map(d => (
                     <path
-                        class={`country ${ d.id }`}
+                        key={d.id}
+                        className={`country ${d.id}`}
                         d={this.path(d)}
                         fill="blue"
                     />
-                })}
+                ))}
             </g>
         );
     }
