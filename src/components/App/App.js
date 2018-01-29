@@ -8,11 +8,11 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { scale: 8000 };
+    this.state = { scale: 5000 };
   }
   changeScale(zoomIn) {
     this.setState(state => {
-      const scale = zoomIn ? this.state.scale + 50 : this.state.scale - 50;
+      const scale = zoomIn ? this.state.scale + 500 : this.state.scale - 500;
       return { ...state, scale };
     });
   }

@@ -1,30 +1,44 @@
 import React, { Component } from 'react';
-import { geoPath, geoTransverseMercator, geoCentroid } from "d3-geo";
+import { geoPath, geoTransverseMercator, geoCentroid, geoBounds } from "d3-geo";
 import shortid from "shortid";
 
 class Map extends Component {
     constructor(props) {
         super(props);
-        const { scale, width, height, data } = props;
+        this.setPathAndProjection();
+    }
+
+    setPathAndProjection() {
+        const { scale, data, width, height } = this.props;
         const center = geoCentroid(data);
-        const proj = geoTransverseMercator()
-            .translate([width * 2, height / 2])
+        const bounds = geoBounds(data);
+        const [[minX, minY], [maxX, maxY]] = bounds;
+        console.log(minX, minY, maxX, maxY);
+        // const plCenter = [19.27, 52.03];
+        let proj = geoTransverseMercator()
+            .translate([width * 1.5, height / 2])
             .center(center)
-            .rotate([-20, 0])
+            .rotate([-19, 0])
             .scale(scale);
 
         this.path = geoPath()
             .projection(proj);
     }
 
-    componentWillUpdate(props) {
-        const { scale, width, height } = props;
-        const proj = geoTransverseMercator()
-            .translate([width / 2, height / 2])
-            .scale(scale);
+    // haversineFormulaCalculator() {
+    //     const R = 6371; // km
+    //     const dLat = (lat2 - lat1).toRad();
+    //     const dLon = (lon2 - lon1).toRad();
+    //     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    //         Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) *
+    //         Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    //     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    //     const d = R * c;
+    //     return d;
+    // }
 
-        this.path = geoPath()
-            .projection(proj);
+    componentWillUpdate(props) {
+        this.setPathAndProjection();
     }
 
     render() {
