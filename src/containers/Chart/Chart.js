@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getData } from "../../api/data";
 import Map from "../../components/Map/Map";
+import ResponsiveChart from "../../components/ResponsiveChart/ResponsiveChart";
+
 class Chart extends Component {
     constructor(props) {
         super(props);
@@ -20,9 +22,10 @@ class Chart extends Component {
 
     render() {
         const { data } = this.state;
-        const { margins } = this.props;
-        const svgDimensions = { width: 800, height: 500 };
-
+        const svgDimensions = {
+            width: Math.max(this.props.parentWidth, 300),
+            height: 920
+        };
         if (!data) return <div>loading...</div>;
         return (
             <svg
@@ -30,6 +33,8 @@ class Chart extends Component {
                 height={svgDimensions.height}
             >
                 <Map
+                    width={svgDimensions.width}
+                    height={svgDimensions.height}
                     scale={this.props.scale}
                     data={data}
                 />
@@ -38,4 +43,4 @@ class Chart extends Component {
     }
 }
 
-export default Chart;
+export default ResponsiveChart(Chart);
