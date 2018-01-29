@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { geoPath, geoTransverseMercator, geoCentroid, geoBounds } from "d3-geo";
+import { geoPath, geoTransverseMercator, geoCentroid, geoBounds, geoMercator } from "d3-geo";
 import shortid from "shortid";
 
 class Map extends Component {
@@ -21,8 +21,17 @@ class Map extends Component {
             .rotate([-19, 0])
             .scale(scale);
 
+        let proj2 = geoMercator()
+            .translate([width + 220, height / 2])
+            .center(center)
+            .rotate([-19, 0])
+            .scale(scale / 1.7);
+
         this.path = geoPath()
             .projection(proj);
+
+        this.pathWebMercator = geoPath()
+            .projection(proj2);
     }
 
     // haversineFormulaCalculator() {
@@ -49,8 +58,17 @@ class Map extends Component {
                     <path
                         key={shortid.generate()}
                         className={`voivodeship ${d.id}`}
+                        d={this.pathWebMercator(d)}
+                        fill="red"
+                    />
+                ))}
+                {features.map(d => (
+                    <path
+                        key={shortid.generate()}
+                        className={`voivodeship ${d.id}`}
                         d={this.path(d)}
                         fill="blue"
+                        opacity="0.7"
                     />
                 ))}
             </g>
