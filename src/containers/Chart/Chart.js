@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getData } from "../../api/data";
+import { getVoivodeshipGeom } from "../../api/data";
 import Map from "../../components/Map/Map";
 import ResponsiveChart from "../../components/ResponsiveChart/ResponsiveChart";
 
@@ -9,7 +9,7 @@ class Chart extends Component {
         this.state = { data: null };
     }
     componentDidMount() {
-        getData()
+        getVoivodeshipGeom()
             .then((data) => {
                 this.setState({ ...this.state, data });
             })

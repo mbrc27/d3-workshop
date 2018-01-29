@@ -8,7 +8,7 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { scale: 150 };
+    this.state = { scale: 8000 };
   }
   changeScale(zoomIn) {
     this.setState(state => {

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { geoPath, geoMercator } from "d3-geo";
+import { geoPath, geoTransverseMercator, geoCentroid } from "d3-geo";
 import shortid from "shortid";
 
 class Map extends Component {
     constructor(props) {
         super(props);
-        const { scale, width, height } = props;
-        const proj = geoMercator()
-            .translate([width / 2, height / 2])
+        const { scale, width, height, data } = props;
+        const center = geoCentroid(data);
+        const proj = geoTransverseMercator()
+            .translate([width * 2, height / 2])
+            .center(center)
+            .rotate([-20, 0])
             .scale(scale);
 
         this.path = geoPath()
@@ -16,7 +19,7 @@ class Map extends Component {
 
     componentWillUpdate(props) {
         const { scale, width, height } = props;
-        const proj = geoMercator()
+        const proj = geoTransverseMercator()
             .translate([width / 2, height / 2])
             .scale(scale);
 
@@ -31,7 +34,7 @@ class Map extends Component {
                 {features.map(d => (
                     <path
                         key={shortid.generate()}
-                        className={`country ${d.id}`}
+                        className={`voivodeship ${d.id}`}
                         d={this.path(d)}
                         fill="blue"
                     />

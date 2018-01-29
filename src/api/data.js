@@ -34,6 +34,16 @@ export const getCountriesGeom = () => {
     });
 }
 
+export const getVoivodeshipGeom = () => {
+    return new Promise((resolve, reject) => {
+        d3Json("/poland-voi.json")
+            .get((err, response) => {
+                if (err) reject(new Error("Could not countries geometry"));
+                resolve(response);
+            });
+    });
+}
+
 export const getData = () => {
     return new Promise((resolve, reject) => {
         Promise.all([
