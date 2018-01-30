@@ -22,10 +22,10 @@ class Map extends Component {
             .scale(scale);
 
         let proj2 = geoMercator()
-            .translate([width + 220, height / 2])
+            .translate([width * 1.17, height / 2])
             .center(center)
             .rotate([-19, 0])
-            .scale(scale / 1.7);
+            .scale(scale / 1.55);
 
         this.path = geoPath()
             .projection(proj);
