@@ -59,7 +59,7 @@
         //     .attr("class", "mouse-line")
         //     .attr("d", line);
 
-        wrapper.selectAll(`circle.tooltip.${ key }`)
+        wrapper.selectAll(`circle.tooltip.${key}`)
             .data(data)
             .enter()
             .append("circle")
@@ -81,8 +81,10 @@
             .select("text")
             .attr("text-anchor", "middle");
 
+        const yAxis = d3.axisLeft(yScale)
+            .tickSizeInner(-width);
         wrapper.append("g")
-            .call(d3.axisLeft(yScale))
+            .call(yAxis)
             .append("text")
             .attr("fill", "#000")
             .attr("y", 8)
