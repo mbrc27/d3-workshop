@@ -19,7 +19,7 @@
 
     d3.csv("/power_cons.csv")
         .get((err, response) => {
-            response = response.slice(0, 50);
+            //response = response.slice(0, 50);
             if (err) throw new Error(err);
 
             g = svg.append("g").attr("transform", "translate(40, 40)");
@@ -59,15 +59,12 @@
 
     const createAxes = (wrapper) => {
         const xAxis = d3.axisTop(xScale);
-        // .tickValues(d3.range(0, 7))
-        // .tickFormat((d, i) => weekdays[i]);
 
         wrapper.append("g")
             .call(xAxis)
             .attr("transform", `translate(0, ${height - 90})`)
             .selectAll("text")
             .attr("transform", "rotate(90)");
-        //.attr("text-anchor", "middle");
 
         const yAxis = d3.axisLeft(yScale)
             .tickSizeInner(-width);
@@ -78,6 +75,6 @@
             .attr("y", 8)
             .attr("dy", "1.1em")
             .attr("text-anchor", "start")
-            .text("Power usage");
+            .text("Power usage (kWh per capita)");
     };
 })();
